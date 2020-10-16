@@ -1,5 +1,4 @@
-a - Score: 3- Lives: 3 - Snake Length: 5
-b - Score: 7- Lives: 3 - Snake Length: 5
-c - Score: 5- Lives: 3 - Snake Length: 5
-d - Score: 5- Lives: 3 - Snake Length: 6
-zue - Score: 3- Lives: 3 - Snake Length: 5
+9 - Score: 5- Lives: 3 - Snake Length: 6
+ueueu - Score: 3- Lives: 3 - Snake Length: 5
+eaifjeafijasdf - Score: 5- Lives: 3 - Snake Length: 6
+h - Score: 4- Lives: 3 - Snake Length: 5

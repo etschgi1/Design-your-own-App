@@ -38,24 +38,27 @@ def _7_submit_score():
     f = open("history.txt", "a+")
     f.seek(0)
     lines = f.readlines()
-    f.write(entry)
-    if len(lines) > 3:
+    lines.append(entry)
+    f.close()
+    f = open("history.txt", "w")
+    if len(lines) > 4:
         del lines[0]
     for line in lines:
+        f.write(line)
         print(line, end="")
-    print(entry, end="")
+    lines = []
 
 
 def _6_spawn_apple():
     # Show new apples for 10 rounds
     global APPLE_GOT_EATEN, APPLE_LIVES, LIVES, SNAKE, APPLE
     if APPLE_GOT_EATEN or APPLE_LIVES < 2:
-        APPLE_GOT_EATEN = False
-        if APPLE_LIVES < 1:
+        if APPLE_LIVES < 2 and not APPLE_GOT_EATEN:
             LIVES -= 1
             if LIVES == 0:
                 _7_submit_score()
                 exit()
+        APPLE_GOT_EATEN = False
         # spawn new apple
         while True:
             potfield = random.choice(ALPHA)+str(random.choice(range(8)))
@@ -71,15 +74,15 @@ def _5_detect_collision():
     global SNAKE, APPLE, APPLE_GOT_EATEN, BIGGER_SNAKE
     head = SNAKE[-1]
     body = SNAKE[0:-1]
-    # dedect collision with apple
+    # detect collision with apple
     if head == APPLE:
         APPLE_GOT_EATEN = True
         BIGGER_SNAKE = True
         return False
-    # dedect collision with snake
+    # detect collision with snake
     if head in body:
         return True
-    # dedect wall collision
+    # detect wall collision
     if head == "Dead Already":
         return True
     a = head[0]
