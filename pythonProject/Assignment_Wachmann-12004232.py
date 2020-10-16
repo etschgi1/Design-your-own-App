@@ -36,22 +36,14 @@ def _7_submit_score():
              f" - Snake Length: {len(SNAKE)}\n")
 
     f = open("history.txt", "a+")
-
+    f.seek(0)
     lines = f.readlines()
-    f.close()
-    print(lines)
-    if len(lines) > 3:  # to keep only a maximum of 4 entries in total
+    f.write(entry)
+    if len(lines) > 3:
         del lines[0]
-    lines.append(entry)
-    # print history
-    print("\n\nHistory:")
-    f = open("history.txt", "w")
     for line in lines:
-        f.write(line)
         print(line, end="")
-    f.close()
-    lines = []
-    exit()
+    print(entry, end="")
 
 
 def _6_spawn_apple():
