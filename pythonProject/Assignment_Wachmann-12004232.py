@@ -13,7 +13,7 @@ ORIENTATION = 4
 # 4 means the snake’s head looks down
 # 5 means the snake’s head looks right.
 
-APPLE = "B6"
+APPLE = "A0"
 APPLE_LIVES = 12
 APPLE_GOT_EATEN = False
 LIVES = 3
@@ -21,7 +21,7 @@ SCORE = 0
 BIGGER_SNAKE = False
 
 ALPHA = ["A", "B", "C", "D", "E", "F", "G", "H"]
-POSORIENTATION = {1: "+", 2: "∧", 3: "<", 4: "v", 5: ">"}
+POSORIENTATION = {1: "+", 2: "^", 3: "<", 4: "v", 5: ">"}
 
 
 def _7_submit_score():
@@ -34,9 +34,12 @@ def _7_submit_score():
     # "NAME - Score: SCORE- Lives: LIVES - Snake Length: SNAKE_LENGTH\n"
     entry = (f"{username} - Score: {SCORE}- Lives: {LIVES}" +
              f" - Snake Length: {len(SNAKE)}\n")
-    f = open("history.txt", "r")
+
+    f = open("history.txt", "a+")
+
     lines = f.readlines()
     f.close()
+    print(lines)
     if len(lines) > 3:  # to keep only a maximum of 4 entries in total
         del lines[0]
     lines.append(entry)
@@ -54,7 +57,7 @@ def _7_submit_score():
 def _6_spawn_apple():
     # Show new apples for 10 rounds
     global APPLE_GOT_EATEN, APPLE_LIVES, LIVES, SNAKE, APPLE
-    if APPLE_GOT_EATEN or APPLE_LIVES < 1:
+    if APPLE_GOT_EATEN or APPLE_LIVES < 2:
         APPLE_GOT_EATEN = False
         if APPLE_LIVES < 1:
             LIVES -= 1
@@ -67,7 +70,7 @@ def _6_spawn_apple():
             if potfield not in SNAKE and potfield != APPLE:
                 APPLE = potfield
                 break
-        APPLE_LIVES = 12
+        APPLE_LIVES = 13
     APPLE_LIVES -= 1
 
 
@@ -145,7 +148,7 @@ def _2_is_apple(row, column):
 
 
 def _1_print_game_board():
-    global LIVES, APPLE_LIVES, SCORE, ALPHA, POSORIENTATION
+    global LIVES, APPLE_LIVES, SCORE, ALPHA, POSORIENTATION, APPLE, SNAKE
     # print the game field
     # "Lives: LIVES - Apple Lives: APPLE_LIVES - Score: SCORE"
     LINE = "----------------------------"
@@ -164,7 +167,7 @@ def _1_print_game_board():
     for r in ALPHA:
         print(r+" |", end="")
         for c in range(8):
-            if _2_is_apple(r, c):
+            if _2_is_apple(r, c) and SNAKE[-1] != APPLE:
                 print(" O ", end="")
                 if c == 7:
                     print("|")
@@ -190,7 +193,6 @@ def main():
     forbiddenmove = "w"
     while True:
         _1_print_game_board()
-        _6_spawn_apple()
         userin = input("input [w a s d]: ")
         if userin == "q":
             exit()
@@ -218,6 +220,7 @@ def main():
                     forbiddenmove = "a"
             elif userin == forbiddenmove:
                 print("INVALID")
+        _6_spawn_apple()
 
 
 if __name__ == '__main__':
