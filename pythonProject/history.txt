@@ -1,4 +1,4 @@
 test_snake.py - Score: 0- Lives: 0 - Snake Length: 5
-asdf - Score: 10- Lives: 2 - Snake Length: 5
-asdf - Score: 40- Lives: 0 - Snake Length: 6
+test_snake.py - Score: 2- Lives: 0 - Snake Length: 5
 test_snake.py - Score: 0- Lives: 0 - Snake Length: 5
+test_snake.py - Score: 2- Lives: 0 - Snake Length: 5

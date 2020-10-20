@@ -192,8 +192,12 @@ def main():
         userin = input("input [w a s d]: ")
         if userin == "q":
             exit()
-        elif userin in keymap.keys():
-            neworientation = keymap[userin]
+        elif userin in keymap.keys() or userin == "":
+            SCORE += 1
+            if userin:
+                neworientation = keymap[userin]
+            else:
+                neworientation = ORIENTATION
             if userin != forbiddenmove:  # valid round
                 ORIENTATION = neworientation
                 _4_move_snake()
@@ -203,7 +207,6 @@ def main():
                 if coll or DEAD:
                     _7_submit_score()
                     exit()
-                SCORE += 1
 
                 # get forbidden move
                 if ORIENTATION == 2:
