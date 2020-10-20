@@ -19,9 +19,10 @@ APPLE_GOT_EATEN = False
 LIVES = 3
 SCORE = 0
 BIGGER_SNAKE = False
+DEAD = False
 
 ALPHA = ["A", "B", "C", "D", "E", "F", "G", "H"]
-POSORIENTATION = {1: "+", 2: "^", 3: "<", 4: "v", 5: ">"}
+POSORIENTATION = {1: "+", 2: "∧", 3: "<", 4: "v", 5: ">"}
 
 
 def _7_submit_score():
@@ -51,13 +52,13 @@ def _7_submit_score():
 
 def _6_spawn_apple():
     # Show new apples for 10 rounds
-    global APPLE_GOT_EATEN, APPLE_LIVES, LIVES, SNAKE, APPLE
+    global APPLE_GOT_EATEN, APPLE_LIVES, LIVES, SNAKE, APPLE, DEAD
     if APPLE_GOT_EATEN or APPLE_LIVES < 2:
         if APPLE_LIVES < 2 and not APPLE_GOT_EATEN:
             LIVES -= 1
             if LIVES == 0:
-                _7_submit_score()
-                exit()
+                DEAD = True
+                return None
         APPLE_GOT_EATEN = False
         # spawn new apple
         while True:
@@ -183,7 +184,7 @@ def _1_print_game_board():
 
 def main():
     # main function, call other functions here
-    global ORIENTATION, SCORE, BIGGER_SNAKE
+    global ORIENTATION, SCORE, BIGGER_SNAKE, DEAD
     keymap = {"w": 2, "a": 3, "s": 4, "d": 5}
     forbiddenmove = "w"
     while True:
@@ -199,7 +200,7 @@ def main():
                 if BIGGER_SNAKE:  # deactivate bigger snake after growing once
                     BIGGER_SNAKE = False
                 coll = _5_detect_collision()
-                if coll:
+                if coll or DEAD:
                     _7_submit_score()
                     exit()
                 SCORE += 1
@@ -216,6 +217,9 @@ def main():
             elif userin == forbiddenmove:
                 print("INVALID")
         _6_spawn_apple()
+        if DEAD:
+            _7_submit_score()
+            exit(0)
 
 
 if __name__ == '__main__':

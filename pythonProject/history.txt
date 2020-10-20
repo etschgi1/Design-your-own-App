@@ -1,4 +1,4 @@
-9 - Score: 5- Lives: 3 - Snake Length: 6
-ueueu - Score: 3- Lives: 3 - Snake Length: 5
-eaifjeafijasdf - Score: 5- Lives: 3 - Snake Length: 6
-h - Score: 4- Lives: 3 - Snake Length: 5
+test_snake.py - Score: 0- Lives: 0 - Snake Length: 5
+asdf - Score: 10- Lives: 2 - Snake Length: 5
+asdf - Score: 40- Lives: 0 - Snake Length: 6
+test_snake.py - Score: 0- Lives: 0 - Snake Length: 5
