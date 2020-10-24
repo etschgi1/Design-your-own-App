@@ -1,4 +1,1 @@
-n = 5
-for i in range(30):
-    n -= 1
-    print(n)
+print(1 % 5)
