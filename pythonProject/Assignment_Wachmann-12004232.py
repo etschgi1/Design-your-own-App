@@ -31,7 +31,7 @@ def _7_submit_score():
     # "Your name for the history: "
     username = input("Your name for the history: ")
     if username == "q":
-        exit()
+        exit(0)
     # "NAME - Score: SCORE- Lives: LIVES - Snake Length: SNAKE_LENGTH\n"
     entry = (f"{username} - Score: {SCORE}- Lives: {LIVES}" +
              f" - Snake Length: {len(SNAKE)}\n")
@@ -191,7 +191,7 @@ def main():
         _1_print_game_board()
         userin = input("input [w a s d]: ")
         if userin == "q":
-            exit()
+            exit(0)
         elif userin in keymap.keys() or userin == "":
             SCORE += 1
             if userin:
@@ -206,7 +206,7 @@ def main():
                 coll = _5_detect_collision()
                 if coll or DEAD:
                     _7_submit_score()
-                    exit()
+                    exit(0)
 
                 # get forbidden move
                 if ORIENTATION == 2:
